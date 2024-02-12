@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhdumv4ube3ru"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_o3low"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o3low")
+
+[node name="Login" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Login"]
+layout_mode = 2
+
+[node name="PlayerName" type="LineEdit" parent="Login/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "name"
+alignment = 1
+
+[node name="GameCode" type="LineEdit" parent="Login/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "game code"
+alignment = 1
+
+[node name="WebsocketURL" type="LineEdit" parent="Login/VBoxContainer"]
+layout_mode = 2
+text = "ws://localhost:9080"
+placeholder_text = "websocket url"
+alignment = 1
+
+[node name="Button" type="Button" parent="Login/VBoxContainer"]
+layout_mode = 2
+text = "create / join"
+
+[node name="Lobby" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby"]
+layout_mode = 2
+
+[node name="GameCode" type="Label" parent="Lobby/VBoxContainer"]
+layout_mode = 2
+text = "game: "
+
+[node name="ItemList" type="ItemList" parent="Lobby/VBoxContainer"]
+layout_mode = 2
+auto_height = true
+
+[node name="StartGame" type="Button" parent="Lobby/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "start game"
+
+[connection signal="pressed" from="Login/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Lobby/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]

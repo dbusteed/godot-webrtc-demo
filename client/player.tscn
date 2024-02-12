@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://crj06vclriwum"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_k741k"]
+[ext_resource type="Texture2D" uid="uid://vqpahqh81bmm" path="res://icon.svg" id="2_g37mo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlghn"]
+radius = 16.0312
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_233yj"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_k741k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_g37mo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jlghn")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_233yj")
